@@ -20,10 +20,10 @@ csr_names_st: Maharashtra
 csr_names_l: Mumbai
 csr_names_o: "Your Company Name"
 
-ca_endpoint: tls-ca.my-hlf-domain.com:30448
+ca_endpoint: tls-ca.falcon.white-label.npci.org.in:30448
 ca_secret: tlsca-secret
 
-hlf_domain: my-hlf-domain.com
+hlf_domain: falcon.white-label.npci.org.in
 identities:
   - identity_name: orderer0-orderer
     identity_secret: orderer0ordererSamplePassword

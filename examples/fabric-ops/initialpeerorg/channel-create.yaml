@@ -13,17 +13,17 @@ image:
   ### Overrides the image tag whose default is the chart appVersion.
   tag: "2.4"
 
-ica_endpoint: ica-initialpeerorg.my-hlf-domain.com:30448
-tlsca_endpoint: tls-ca.my-hlf-domain.com:30448
+ica_endpoint: ica-initialpeerorg.falcon.white-label.npci.org.in:30448
+tlsca_endpoint: tls-ca.falcon.white-label.npci.org.in:30448
 
-orderer_endpoint: orderer0-orderer.my-hlf-domain.com:30448
-filestore_endpoint: http://filestore.my-hlf-domain.com:31862
+orderer_endpoint: orderer0-orderer.falcon.white-label.npci.org.in:30448
+filestore_endpoint: http://filestore.falcon.white-label.npci.org.in:31862
 filestore_ssl: false # Make it `true` if `filestore_endpoint` is over https.
 config_transaction_filename: channel.tx
 channel_block_filename: mychannel.block
 
 
-hlf_domain: my-hlf-domain.com
+hlf_domain: falcon.white-label.npci.org.in
 hlf_channel: mychannel
 fabric_actions: 
  create_channel: true

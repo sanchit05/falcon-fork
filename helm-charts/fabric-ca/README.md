@@ -59,7 +59,7 @@ The following table lists the configurable parameters of the Fabric-ca chart and
 | `init.image.pullPolicy` | The init container image pull policy | `"IfNotPresent"` |
 | `retry_seconds` | Retry period in seconds for any script activities. | `60` |
 | `recreate_intermediate_cert` | `true` if parent public key cert needs to be re-created | `false` |
-| `tls_domain` | Any resolvable DNS for you CA endpoint | `"my-hlf-domain.com"` |
+| `tls_domain` | Any resolvable DNS for you CA endpoint | `"falcon.white-label.npci.org.in"` |
 | `ca_server.csr_names_c` | Country name abbreviation in TWO letter | `"IN"` |
 | `ca_server.csr_names_st` | State | `"Maharashtra"` |
 | `ca_server.csr_names_l` | Locality | `"Mumbai"` |

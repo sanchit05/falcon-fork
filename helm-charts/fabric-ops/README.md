@@ -32,7 +32,7 @@ A Helm chart for performing various operations in Hyperledger fabric network.
 | `csr_names_st` | State | `"Maharashtra"` |
 | `csr_names_l` | Locality | `"Mumbai"` |
 | `csr_names_o` | Organization name | `"Your Company Name"` |
-| `hlf_domain` | The FQDN suffix will be used in CSR generation. Eg `peer0-prg1.my-hlf-domain.com` | `"my-hlf-domain.com"` |
+| `hlf_domain` | The FQDN suffix will be used in CSR generation. Eg `peer0-prg1.falcon.white-label.npci.org.in` | `"falcon.white-label.npci.org.in"` |
 | `ica_tls_certfile` | Public key cert file path of the respective ICA/MSP endpoint | "`/tmp/ca-cert.pem"` |
 | `tlsca_tls_certfile` | Public key cert file path of the respective TLSCA endpoint | "`/tmp/tlsca-cert.pem"` |
 | `workdir` | The default work directory inside the job container | `"/opt/gopath/src/github.com/hyperledger/fabric"` |
@@ -59,16 +59,16 @@ Example; To enroll an identity `admin` which does not require a tlsca enrollment
       admin \
       adminPassword \
       /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/users \
-      ica-url.my-hlf-domain.com:30448 \
+      ica-url.falcon.white-label.npci.org.in:30448 \
       "none" \
       /tmp/ca-cert.pem \
       "none" \
-      my-hlf-domain.com \
+      falcon.white-label.npci.org.in \
       true \
       false
 ```
 
-The above function invocation will enroll the user `admin` with password `adminPassword` at its msp ca endpoint `ica-url.my-hlf-domain.com:30448` by fetching the public key of `ica-url.my-hlf-domain.com:30448` to the path `/tmp/ca-cert.pem`. If the identity password is correct, then it will create a directory `/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/users/<identity-name>/msp` and place the enrolled certificates there. This function won't attempt a tlsca enrollment since we set `REQUIRE_TLS_ENROLLMENT` is `false` as its 10th parameter. If tlsca enrollment is enabled and a valid tlsca endpoint is given, then the above enrollment will happen at tlsca endpoint and the certs will be stored in `/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/users/<identity-name>/tls` directory. 
+The above function invocation will enroll the user `admin` with password `adminPassword` at its msp ca endpoint `ica-url.falcon.white-label.npci.org.in:30448` by fetching the public key of `ica-url.falcon.white-label.npci.org.in:30448` to the path `/tmp/ca-cert.pem`. If the identity password is correct, then it will create a directory `/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/users/<identity-name>/msp` and place the enrolled certificates there. This function won't attempt a tlsca enrollment since we set `REQUIRE_TLS_ENROLLMENT` is `false` as its 10th parameter. If tlsca enrollment is enabled and a valid tlsca endpoint is given, then the above enrollment will happen at tlsca endpoint and the certs will be stored in `/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/users/<identity-name>/tls` directory. 
 
 
 
@@ -79,7 +79,7 @@ The following table lists the configurable parameters of the Fabric-ops chart fo
 | Parameter                        | Description             | Default        |
 | -------------------------------- | ----------------------- | -------------- |
 | `fabric_actions.identity` | `true` to specify the job is an identity registration job | `true` |
-| `ca_endpoint` | FQDN of the CA server endpoint with port. `Eg; ica-org1.my-hlf-domain.com:30448` | `""` |
+| `ca_endpoint` | FQDN of the CA server endpoint with port. `Eg; ica-org1.falcon.white-label.npci.org.in:30448` | `""` |
 | `ca_secret` | The kubernetes secret contains the CA username and password at `user` and `password` keys. | `""` |
 | `identities` | The array of identities with identity information. [Refer](#Identity-array-example) | `[]` |
 
@@ -113,8 +113,8 @@ identities:
 | `hlf_channel` | Application channel name | `""` |
 | `block_file` | Genesisblock file name to be generated | `"genesis.block"` |
 | `config_transaction_filename` | Channel transaction file name to be generated | `"channel.tx"` |
-| `tlsca_endpoint` | FQDN of the TLSCA server endpoint with port | `"tls-ca.my-hlf-domain.com:30448"` |
-| `filestore_endpoint` | FQDN of filestore server endpoint with port | `"http://filestore.my-hlf-domain.com:31862"` |
+| `tlsca_endpoint` | FQDN of the TLSCA server endpoint with port | `"tls-ca.falcon.white-label.npci.org.in:30448"` |
+| `filestore_endpoint` | FQDN of filestore server endpoint with port | `"http://filestore.falcon.white-label.npci.org.in:31862"` |
 | `filestore_ssl` | `true` if `filestore_endpoint` is over https. | `false` |
 
 
@@ -124,7 +124,7 @@ identities:
 organizations:
   - org_type: orderer
     org_name: orderer
-    ica_endpoint: ica-orderer.my-hlf-domain.com:30448
+    ica_endpoint: ica-orderer.falcon.white-label.npci.org.in:30448
     cert_path: /root/orderer.pem
     admin_identity: admin
     admin_secret: ordererAdminpassword
@@ -140,12 +140,12 @@ organizations:
       port: "30448"
   - org_type: peerorg
     org_name: initialpeerorg
-    ica_endpoint: ica-initialpeerorg.my-hlf-domain.com:30448
+    ica_endpoint: ica-initialpeerorg.falcon.white-label.npci.org.in:30448
     cert_path: /root/peerorg.pem
     admin_identity: admin
     admin_secret: initialpeerorgAdminSamplePassword
     anchor_peers:
-    - host: peer0-initialpeerorg.my-hlf-domain.com
+    - host: peer0-initialpeerorg.falcon.white-label.npci.org.in
       port: "30448"
 ```
 
@@ -155,9 +155,9 @@ organizations:
 | ------------------------ | ----------------------- | -------------- |
 | `fabric_actions.create_channel` | `true` to specify the job is a channel creation job | `true` |
 | `ica_endpoint` | FQDN of the MSPCA server endpoint with port | `""` |
-| `tlsca_endpoint` | FQDN of the TLSCA server endpoint with port | `"tls-ca.my-hlf-domain.com:30448"` |
-| `orderer_endpoint` | FQDN of the Orderer node endpoint with port | `"orderer0-orderer.my-hlf-domain.com:30448"` |
-| `filestore_endpoint` | The filestore endpoint | `"http://filestore.my-hlf-domain.com:31862"` |
+| `tlsca_endpoint` | FQDN of the TLSCA server endpoint with port | `"tls-ca.falcon.white-label.npci.org.in:30448"` |
+| `orderer_endpoint` | FQDN of the Orderer node endpoint with port | `"orderer0-orderer.falcon.white-label.npci.org.in:30448"` |
+| `filestore_endpoint` | The filestore endpoint | `"http://filestore.falcon.white-label.npci.org.in:31862"` |
 | `filestore_ssl` | `true` if `filestore_endpoint` is over https | `false` |
 | `config_transaction_filename` | Transaction filename in the filestore project dirctory | `"channel.tx"` |
 | `channel_block_filename` | Initial channel block filename to be created and uploaded to filestore project dirctory | `""` |
@@ -180,8 +180,8 @@ admin_identity:
 | ------------------------ | ----------------------- | -------------- |
 | `fabric_actions.update_anchor_peer` | `true` to specify the job is an anchor peer update job | `true` |
 | `ica_endpoint` | FQDN of the MSPCA server endpoint with port | `""` |
-| `tlsca_endpoint` | FQDN of the TLSCA server endpoint with port | `"tls-ca.my-hlf-domain.com:30448"` |
-| `orderer_endpoint` | FQDN of the Orderer node endpoint with port | `"orderer0-orderer.my-hlf-domain.com:30448"` |
+| `tlsca_endpoint` | FQDN of the TLSCA server endpoint with port | `"tls-ca.falcon.white-label.npci.org.in:30448"` |
+| `orderer_endpoint` | FQDN of the Orderer node endpoint with port | `"orderer0-orderer.falcon.white-label.npci.org.in:30448"` |
 | `hlf_channel` | The channel to update | `""` |
 | `admin_identity` | Any valid Admin user identity array in `ica_endpoint`. [Refer](#Admin-identity) | `[]` |
 | `anchor_peers` | Anchor peer lists. [Refer](#Anchorpeer-list-format) | `[]` |
@@ -190,11 +190,11 @@ admin_identity:
 
 ```bash
 anchor_peers:
-   - host: peer0-initialpeerorg.my-hlf-domain.com
+   - host: peer0-initialpeerorg.falcon.white-label.npci.org.in
      port: "30448"
-   - host: peer1-initialpeerorg.my-hlf-domain.com
+   - host: peer1-initialpeerorg.falcon.white-label.npci.org.in
      port: "30448"
-   - host: peer2-initialpeerorg.my-hlf-domain.com
+   - host: peer2-initialpeerorg.falcon.white-label.npci.org.in
      port: "30448"
 ```
 
@@ -203,9 +203,9 @@ anchor_peers:
 | Parameter                | Description             | Default        |
 | ------------------------ | ----------------------- | -------------- |
 | `fabric_actions.configure_org_channel` | `true` to specify the job is to add new org | `true` |
-| `ica_endpoint` | FQDN of the MSPCA server endpoint with port | `"ica-initialpeerorg.my-hlf-domain.com:30448"` |
-| `tlsca_endpoint` | FQDN of the TLSCA server endpoint with port | `"tls-ca.my-hlf-domain.com:30448"` |
-| `orderer_endpoint` | FQDN of the Orderer node endpoint with port | `"orderer0-orderer.my-hlf-domain.com:30448"` |
+| `ica_endpoint` | FQDN of the MSPCA server endpoint with port | `"ica-initialpeerorg.falcon.white-label.npci.org.in:30448"` |
+| `tlsca_endpoint` | FQDN of the TLSCA server endpoint with port | `"tls-ca.falcon.white-label.npci.org.in:30448"` |
+| `orderer_endpoint` | FQDN of the Orderer node endpoint with port | `"orderer0-orderer.falcon.white-label.npci.org.in:30448"` |
 | `hlf_channel` | The channel to update | `""` |
 | `admin_identity` | Any valid Admin user identity array in `ica_endpoint`. [Refer](#Admin-identity) | `[]` |
 | `organizatons` | List of organizations to add. [Refer](#Organization-list-format) | `[]` |
@@ -215,16 +215,16 @@ anchor_peers:
 ```bash
 organizatons:
  - name: org1
-   ica_endpoint: ica-org1.my-hlf-domain.com:30448
+   ica_endpoint: ica-org1.falcon.white-label.npci.org.in:30448
    identity_name: admin
    identity_secret: org1AdminSamplePassword
-   anchor_peer: peer0-org1.my-hlf-domain.com
+   anchor_peer: peer0-org1.falcon.white-label.npci.org.in
    anchor_peer_port: 30448
  - name: org2
-   ica_endpoint: ica-org2.my-hlf-domain.com:30448
+   ica_endpoint: ica-org2.falcon.white-label.npci.org.in:30448
    identity_name: admin
    identity_secret: org2AdminSamplePassword
-   anchor_peer: peer0-org2.my-hlf-domain.com
+   anchor_peer: peer0-org2.falcon.white-label.npci.org.in
    anchor_peer_port: 30448
 ```
 
@@ -234,8 +234,8 @@ organizatons:
 | ------------------------ | ----------------------- | -------------- |
 | `fabric_actions.install_chaincode` | `true` to specify the job is to install chaincode | `true` |
 | `ica_endpoint` | FQDN of the MSPCA server endpoint with port | `""` |
-| `tlsca_endpoint` | FQDN of the TLSCA server endpoint with port | `"tls-ca.my-hlf-domain.com:30448"` |
-| `filestore_endpoint` | The filestore endpoint | `"http://filestore.my-hlf-domain.com:31862"` |
+| `tlsca_endpoint` | FQDN of the TLSCA server endpoint with port | `"tls-ca.falcon.white-label.npci.org.in:30448"` |
+| `filestore_endpoint` | The filestore endpoint | `"http://filestore.falcon.white-label.npci.org.in:31862"` |
 | `filestore_ssl` | `true` if `filestore_endpoint` is over https | `false` |
 | `channel_block_filename` | Initial application channel block file name in filestore under project directory | `"mychannel.block"` |
 | `retry_seconds` | Retry period in seconds for any failed script activities. Eg; enrollment  | `10` |
@@ -249,7 +249,7 @@ organizatons:
 ```bash
 peer_identities:
  - identity_name: peer0-initialpeerorg
-   # peer_endpoint: peer0-initialpeerorg.my-hlf-domain.com:30448 # By default it will use identity_name:peer_internal_service_port
+   # peer_endpoint: peer0-initialpeerorg.falcon.white-label.npci.org.in:30448 # By default it will use identity_name:peer_internal_service_port
  - identity_name: peer1-initialpeerorg
  - identity_name: peer2-initialpeerorg
  ```
@@ -260,10 +260,10 @@ peer_identities:
 | ------------------------ | ----------------------- | -------------- |
 | `fabric_actions.approve_chaincode` | `true` to specify the job is to approve chaincode | `true` |
 | `ica_endpoint` | FQDN of the MSPCA server endpoint with port  | `""` |
-| `tlsca_endpoint` | FQDN of the TLSCA server endpoint with port | `"tls-ca.my-hlf-domain.com:30448"` |
+| `tlsca_endpoint` | FQDN of the TLSCA server endpoint with port | `"tls-ca.falcon.white-label.npci.org.in:30448"` |
 | `hlf_channel` | Application channel name | `""` |
-| `orderer_endpoint` | FQDN of the Orderer node endpoint with port | `"orderer0-orderer.my-hlf-domain.com:30448"` |
-| `filestore_endpoint` | The filestore endpoint | `"http://filestore.my-hlf-domain.com:31862"` |
+| `orderer_endpoint` | FQDN of the Orderer node endpoint with port | `"orderer0-orderer.falcon.white-label.npci.org.in:30448"` |
+| `filestore_endpoint` | The filestore endpoint | `"http://filestore.falcon.white-label.npci.org.in:31862"` |
 | `filestore_ssl` | `true` if `filestore_endpoint` is over https | `false` |
 | `require_collection_config` | `true` if collection config is required | `"true"` |
 | `collection_config_file` | Collection config filename in the filestore under the project directory  | `"collection-config.json"` |
@@ -282,11 +282,11 @@ peer_identities:
 | ------------------------ | ----------------------- | -------------- |
 | `fabric_actions.commit_chaincode` | `true` to specify the job is to commit chaincode | `true` |
 | `ica_endpoint` | FQDN of the MSPCA server endpoint with port | `""` |
-| `tlsca_endpoint` | FQDN of the TLSCA server endpoint with port | `"tls-ca.my-hlf-domain.com:30448"` |
+| `tlsca_endpoint` | FQDN of the TLSCA server endpoint with port | `"tls-ca.falcon.white-label.npci.org.in:30448"` |
 | `hlf_channel` | Application channel name | `""` |
 | `require_collection_config` | `true` if collection config is required  | `"true"` |
-| `orderer_endpoint` | FQDN of the Orderer node endpoint with port | `"orderer0-orderer.my-hlf-domain.com:30448"` |
-| `filestore_endpoint` | The filestore endpoint | `"http://filestore.my-hlf-domain.com:31862"` |
+| `orderer_endpoint` | FQDN of the Orderer node endpoint with port | `"orderer0-orderer.falcon.white-label.npci.org.in:30448"` |
+| `filestore_endpoint` | The filestore endpoint | `"http://filestore.falcon.white-label.npci.org.in:31862"` |
 | `filestore_ssl` | `true` if `filestore_endpoint` is over https | `false` |
 | `collection_config_file` | Collection config filename in the filestore under the project directory | `"collection-config.json"` |
 | `collection_config_file_hash` | File hash of the above collection config | `""` |
@@ -302,11 +302,11 @@ peer_identities:
 | Parameter                | Description             | Default        |
 | ------------------------ | ----------------------- | -------------- |
 | `fabric_actions.add_orderer` | `true` to specify the job is to add new orderer | `true` |
-| `orderer_endpoint` | FQDN of the Orderer node endpoint with port | `"orderer0-orderer.my-hlf-domain.com:30448"` |
-| `filestore_endpoint` | The filestore endpoint | `"http://filestore.my-hlf-domain.com:31862"` |
+| `orderer_endpoint` | FQDN of the Orderer node endpoint with port | `"orderer0-orderer.falcon.white-label.npci.org.in:30448"` |
+| `filestore_endpoint` | The filestore endpoint | `"http://filestore.falcon.white-label.npci.org.in:31862"` |
 | `filestore_ssl` | `true` if `filestore_endpoint` is over https | `false` |
 | `seconds_to_wait_after_channel_update` | Seconds to pause the script/job activity after one channel update | `15` |
-| `tlsca_endpoint` | FQDN of the TLSCA server endpoint with port | `"tls-ca.my-hlf-domain.com:30448"` |
+| `tlsca_endpoint` | FQDN of the TLSCA server endpoint with port | `"tls-ca.falcon.white-label.npci.org.in:30448"` |
 | `admin_identity` | Any valid Admin user identity array in `ica_endpoint`. [Refer](#Admin-identity-for-order-operation) | `[]` |
 | `additional_orderers` | List of additional oderers. Execute one at a time. [Refer](#New-orderer-for-order-addition) | `[]` |
 | `MspIdOverride` | To override `nameOverride` with a different MSPID | `""` |
@@ -317,7 +317,7 @@ peer_identities:
 admin_identity:
   - identity_name: admin
     identity_secret: ordererAdminpassword
-    ica_endpoint: ica-orderer.my-hlf-domain.com:30448
+    ica_endpoint: ica-orderer.falcon.white-label.npci.org.in:30448
     ica_tls_certfile: /tmp/orderer-ica.cert
     msp_base_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderer/users
     require_msp_enrollment: true
@@ -332,10 +332,10 @@ additional_orderers:
     identity_secret: orderer3ordererSamplePassword
     require_msp_enrollment: true
     require_tls_enrollment: true
-    endpoint: orderer3-orderer.my-hlf-domain.com
+    endpoint: orderer3-orderer.falcon.white-label.npci.org.in
     port: 30448
     msp_base_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderer/users
-    ica_endpoint: ica-orderer.my-hlf-domain.com:30448
+    ica_endpoint: ica-orderer.falcon.white-label.npci.org.in:30448
     ica_tls_certfile: /tmp/orderer-ica.cert
     # hlf_domain: If you want to register this orderer with a different hlf domain other than .Values.hlf_domain. Useful when adding new orderers on a different DC and you want to assign a different sub domain for it.
     update_channels:
@@ -376,11 +376,11 @@ Your fabric-orderer array should look like this for the new orderer.
 | Parameter                | Description             | Default        |
 | ------------------------ | ----------------------- | -------------- |
 | `fabric_actions.renew_orderer_tls` | `true` to specify the job is to renew orderer tls cert | `true` |
-| `orderer_endpoint` | FQDN of the Orderer node endpoint with port. Make sure that this orderer should not be the one you're trying to update. | `"orderer0-orderer.my-hlf-domain.com:30448"` |
-| `filestore_endpoint` | The filestore endpoint | `"http://filestore.my-hlf-domain.com:31862"` |
+| `orderer_endpoint` | FQDN of the Orderer node endpoint with port. Make sure that this orderer should not be the one you're trying to update. | `"orderer0-orderer.falcon.white-label.npci.org.in:30448"` |
+| `filestore_endpoint` | The filestore endpoint | `"http://filestore.falcon.white-label.npci.org.in:31862"` |
 | `filestore_ssl` | `true` if `filestore_endpoint` is over https | `false` |
 | `seconds_to_wait_after_channel_update` | Seconds to pause the script/job activity after one channel update | `15` |
-| `tlsca_endpoint` | FQDN of the TLSCA server endpoint with port | `"tls-ca.my-hlf-domain.com:30448"` |
+| `tlsca_endpoint` | FQDN of the TLSCA server endpoint with port | `"tls-ca.falcon.white-label.npci.org.in:30448"` |
 | `admin_identity` | Any valid Admin user identity array in `ica_endpoint`. [Refer](#Admin-identity-for-order-operation) | `[]` |
 | `orderers_to_renew_tls_cert` | List of oderers to renew the tls cert. Execute one at a time. [Refer](#Orderer-renew-order-format) | `[]` |
 | `MspIdOverride` | To override `nameOverride` with a different MSPID | `""` |
@@ -395,7 +395,7 @@ orderers_to_renew_tls_cert:
     upload_sys_channel_block: true
     endpoint: orderer1-orderer.my-hlf-domain-dc-1.com # This must match to the existing endpoint of the orderer in the channel. 
     msp_base_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderer/users
-    ica_endpoint: ica-orderer.my-hlf-domain.com:30448
+    ica_endpoint: ica-orderer.falcon.white-label.npci.org.in:30448
     ica_tls_certfile: /tmp/orderer-cert.pem
     require_msp_enrollment: true
     require_tls_enrollment: true

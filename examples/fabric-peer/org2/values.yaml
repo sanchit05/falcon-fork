@@ -32,9 +32,9 @@ peers:
     identity_secret: peer1org2SamplePassword
 
 global:  
-  hlf_domain: my-hlf-domain.com
-  ica_endpoint: ica-org2.my-hlf-domain.com:30448
-  tlsca_endpoint: tls-ca.my-hlf-domain.com:30448
+  hlf_domain: falcon.white-label.npci.org.in
+  ica_endpoint: ica-org2.falcon.white-label.npci.org.in:30448
+  tlsca_endpoint: tls-ca.falcon.white-label.npci.org.in:30448
   storageClass: standard
   ingressEnabled: true
   ingressClass: nginx
@@ -113,7 +113,7 @@ global:
   peerPvcAccessMode: ReadWriteOnce
   peerSecurityContext: {}
 
-  core_peer_gossip_bootstrap: peer0-org2.my-hlf-domain.com:30448
+  core_peer_gossip_bootstrap: peer0-org2.falcon.white-label.npci.org.in:30448
   core_ledger_state_couchdbconfig_requesttimeout: "180s"
   core_ledger_state_couchdbconfig_maxretries: "5"
   core_ledger_state_couchdbconfig_maxupdatebatchsize: "5000"

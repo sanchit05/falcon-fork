@@ -22,18 +22,18 @@ csr_names_l: Mumbai
 csr_names_o: Your Company Name
 
 #MspIdOverride: ordererorg
-orderer_endpoint: orderer0-orderer.my-hlf-domain.com:30448
-filestore_endpoint: http://filestore.my-hlf-domain.com:31862
+orderer_endpoint: orderer0-orderer.falcon.white-label.npci.org.in:30448
+filestore_endpoint: http://filestore.falcon.white-label.npci.org.in:31862
 filestore_ssl: false # Make it `true` if `filestore_endpoint` is over https.
 seconds_to_wait_after_channel_update: 15
 
-hlf_domain: my-hlf-domain.com
-tlsca_endpoint: tls-ca.my-hlf-domain.com:30448
+hlf_domain: falcon.white-label.npci.org.in
+tlsca_endpoint: tls-ca.falcon.white-label.npci.org.in:30448
 
 admin_identity:
   - identity_name: admin
     identity_secret: ordererAdminpassword
-    ica_endpoint: ica-orderer.my-hlf-domain.com:30448
+    ica_endpoint: ica-orderer.falcon.white-label.npci.org.in:30448
     ica_tls_certfile: /tmp/orderer-ica.cert
     msp_base_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderer/users
     require_msp_enrollment: true
@@ -45,10 +45,10 @@ additional_orderers:
     identity_secret: orderer3ordererSamplePassword
     require_msp_enrollment: true
     require_tls_enrollment: true
-    endpoint: orderer3-orderer.my-hlf-domain.com
+    endpoint: orderer3-orderer.falcon.white-label.npci.org.in
     port: 30448
     msp_base_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderer/users
-    ica_endpoint: ica-orderer.my-hlf-domain.com:30448
+    ica_endpoint: ica-orderer.falcon.white-label.npci.org.in:30448
     ica_tls_certfile: /tmp/orderer-ica.cert
     # hlf_domain: If you want to register this orderer with a different hlf domain other than .Values.hlf_domain. Useful when adding new orderers on a different DC and you want to assign a different sub domain for it.
     update_channels:

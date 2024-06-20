@@ -22,9 +22,9 @@ init:
    tag: "2.4"
 
 ## tls_domain : This will be used to create an Ingress, and CSR for the CA server.
-## Eg: my-hlf-domain.com, then the Ingress object will be created as a combination of ".fabric-ca.fullname + .Values.tls_domain"
-## ie, root-ca.my-hlf-domain.com
-tls_domain: my-hlf-domain.com
+## Eg: falcon.white-label.npci.org.in, then the Ingress object will be created as a combination of ".fabric-ca.fullname + .Values.tls_domain"
+## ie, root-ca.falcon.white-label.npci.org.in
+tls_domain: falcon.white-label.npci.org.in
 ca_server:
   csr_names_country: IN
   csr_names_st: Maharashtra
@@ -43,7 +43,7 @@ recreate_intermediate_cert: false # Make it true if you want to delete existing 
 
 ica:
   enabled: true
-  parent_ca_endpoint: "root-ca.my-hlf-domain.com:30448" # your-root-ca-endpoint:<port>
+  parent_ca_endpoint: "root-ca.falcon.white-label.npci.org.in:30448" # your-root-ca-endpoint:<port>
   intermediate_tls_cert_dir: /tmp/hyperledger/fabric-ca/root-ca-cert
   intermediate_tls_cert_file: cert.pem
 

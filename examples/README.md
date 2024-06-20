@@ -15,8 +15,8 @@
 * ```--enable-ssl-passthrough``` Should be enabled on the Nginx Ingress pod. All of the Hyperledger Fabric related TLS requests should be terminated on the Pod level as long as we're keeping the certs in the POD itself. If Nginx, then a similar ssl passthrough annotation ```"nginx.ingress.kubernetes.io/ssl-passthrough: "true"``` must be added to all the HLF Ingress resources we create. This annotation can be handled from the values file for every helm chart. In case if you're not using Nginx Ingress, kindly add the proper annotations accordingly.
 * ```Configurable DNS```. You should have the ability to add custom DNS zones that are resolvable from the pods. If you're using CoreDNS, follow this guide to add custom zones on your Kubernetes cluster https://coredns.io/2017/05/08/custom-dns-entries-for-kubernetes/. If deploying to GKE on GCP, you can make use of CloudDNS private zones. 
 * Once added the zone, then you need to add A record(s) that points to the server(s) where the Ingress is listening. It must be a wildcard DNS entry.
-    Eg, If your domain name is ```my-hlf-domain.com``` and you have 3 worker nodes ```10.10.10.10``` ```10.10.10.11``` ```10.10.10.12```. Then you need to create a DNS entry ```*.my-hlf-domain.com``` to point to above IPs. This is a must have configuration and make sure that wildcard DNS queries are resolving properly. If this fails, the deployment will fail. Kindly make sure this DNS is resolving and the tcp connections are reaching the ingress. You can verify it by simple telnet command. 
-    ```telnet anyname.my-hlf-domain.com 30448 ``` assuming that 30448 is the Nodeport on Nginx Ingress that maps to Ingress 443. 
+    Eg, If your domain name is ```falcon.white-label.npci.org.in``` and you have 3 worker nodes ```10.10.10.10``` ```10.10.10.11``` ```10.10.10.12```. Then you need to create a DNS entry ```*.falcon.white-label.npci.org.in``` to point to above IPs. This is a must have configuration and make sure that wildcard DNS queries are resolving properly. If this fails, the deployment will fail. Kindly make sure this DNS is resolving and the tcp connections are reaching the ingress. You can verify it by simple telnet command. 
+    ```telnet anyname.falcon.white-label.npci.org.in 30448 ``` assuming that 30448 is the Nodeport on Nginx Ingress that maps to Ingress 443. 
   If you're in any public cloud platform, then hard coding the worker node IP in the DNS is not a reliable approach since the worker node can be changed at any time. In that case, you can deploy an Internal Cloud LB.
 * ```StorageClass``` that supports dynamic volume provisioning. 
 * We're using the docker hub upstream HyperLedger Fabric images for Fabric CA, Peers, Orderers and a custom builder tool which is hosted on NPCI docker hub registry. Make sure that your worker nodes can pull these images from docker hub. If not, upload them to your internal registry and the registry/repository can be managed over values.
@@ -25,12 +25,12 @@
 
 ##### Keep in mind the following things throughout this example deployment;
 
-  1. We'll be using the domain `my-hlf-domain.com`. If you have created a different domain as specified in the pre-req section, then update the `my-hlf-domain.com` to your domain name wherever there is a mention. 
+  1. We'll be using the domain `falcon.white-label.npci.org.in`. If you have created a different domain as specified in the pre-req section, then update the `falcon.white-label.npci.org.in` to your domain name wherever there is a mention. 
   2. The Ingress classname is `nginx`. You need to change it to the appropriate value on your environment if you have a different one.
   3. Nginx ingress services are exposed on `30448` and `30001` for `https` and `http` nodeports respectively.
   4. StorageClass we use `standard`. Feel free to to change it to your storageclass.
   5. project : `yourproject`. 
-  6. If you're using the domain `my-hlf-domain.com`, `nginx` inrgessclass, `30448` and `30001` Nodeports for your Nginx Ingress services, then ideally you don't need to make any changes in any of the values files. Just follow the rest of the deployment guide and apply the following helm commands. Your network will be up and running.
+  6. If you're using the domain `falcon.white-label.npci.org.in`, `nginx` inrgessclass, `30448` and `30001` Nodeports for your Nginx Ingress services, then ideally you don't need to make any changes in any of the values files. Just follow the rest of the deployment guide and apply the following helm commands. Your network will be up and running.
 
 ### Let's get started.
 
@@ -42,12 +42,12 @@ Clone this repository and change your directory to the root directory. First you
   ```
   If you have your own HLF domain, then update it under `.Values.global.hlf_domain` in the below mentioned values [examples/filestore/values.yaml](./filestore/values.yaml).
 
-  Once deployed, you will see the resources and an ingress with hostname `filestore.my-hlf-domain.com`. This will be your filestore end point. Exec into any of your running pods in the same cluster and check with a curl request to make sure that everything is working as expected. If you have your own custom domain/subdomain DNS for the filestore FQDN, then you can use `.Values.hostOverride` to input your own FQDN. Optionally you can add TLS cert to this ingress resource. To do that, you can create a kubenetes secret of tls type and provide it here in `.Values.ingress.tls.secretName`
+  Once deployed, you will see the resources and an ingress with hostname `filestore.falcon.white-label.npci.org.in`. This will be your filestore end point. Exec into any of your running pods in the same cluster and check with a curl request to make sure that everything is working as expected. If you have your own custom domain/subdomain DNS for the filestore FQDN, then you can use `.Values.hostOverride` to input your own FQDN. Optionally you can add TLS cert to this ingress resource. To do that, you can create a kubenetes secret of tls type and provide it here in `.Values.ingress.tls.secretName`
 
   ***IMP*** If you're changing the filestore release name/ingress port/host then you will have to update the other values file where it has a reference. 
 
   ```
-  curl http://filestore.my-hlf-domain.com:31862
+  curl http://filestore.falcon.white-label.npci.org.in:31862
   ```
   If you're getting the following response then that means your Ingress, Custom DNS etc are working properly.
 
@@ -68,9 +68,9 @@ Apply the `fabric-ca` chart with our values file. If you change the ```tls_domai
 ```
 helm install root-ca -n orderer helm-charts/fabric-ca -f examples/fabric-ca/root-ca.yaml
 ```
-This will deploy the `root-ca` server for you and the server will be available at `https://root-ca.my-hlf-domain.com`. To verify the server, you can get into any running pod in the cluster and send a curl request as below;
+This will deploy the `root-ca` server for you and the server will be available at `https://root-ca.falcon.white-label.npci.org.in`. To verify the server, you can get into any running pod in the cluster and send a curl request as below;
 ```
-curl https://root-ca.my-hlf-domain.com:30448/cainfo --insecure
+curl https://root-ca.falcon.white-label.npci.org.in:30448/cainfo --insecure
 ```
 You will get the CA response like below.
 

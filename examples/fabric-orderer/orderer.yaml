@@ -22,11 +22,11 @@ csr_names_st: Maharashtra
 csr_names_l: Mumbai
 csr_names_o: Your Company Name
 
-filestore_endpoint: http://filestore.my-hlf-domain.com:31862
+filestore_endpoint: http://filestore.falcon.white-label.npci.org.in:31862
 filestore_ssl: false # Make it `true` if `filestore_endpoint` is over https.
 ica_tls_cert_file: /root/ica-cert.pem
 retry_seconds: 60
-hlf_domain: my-hlf-domain.com
+hlf_domain: falcon.white-label.npci.org.in
 
 init:
   image:
@@ -37,8 +37,8 @@ global:
   containerPort: 7050
   servicePort: 7050
   replicaCount: 1
-  ica_endpoint: ica-orderer.my-hlf-domain.com:30448
-  tlsca_endpoint: tls-ca.my-hlf-domain.com:30448
+  ica_endpoint: ica-orderer.falcon.white-label.npci.org.in:30448
+  tlsca_endpoint: tls-ca.falcon.white-label.npci.org.in:30448
   block_file: genesis.block
   require_certs_dir_persistence: true
   image:

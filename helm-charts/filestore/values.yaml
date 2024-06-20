@@ -42,7 +42,7 @@ service:
 # You need to add a resolvable DNS entry here. An ingress resource will be created based on this domain. 
 # Eg; domain.com, then the ingress will be created "filestore.domain.com"
 global:
- hlf_domain: "my-hlf-domain.com"
+ hlf_domain: "falcon.white-label.npci.org.in"
 
 # If you want to override the global.hlf_domain FQDN and use your own FQDN, then use this.
 # hostOverride: "custom.filestore.com" 

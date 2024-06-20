@@ -13,10 +13,10 @@ image:
   ## Overrides the image tag whose default is the chart appVersion.
   tag: "2.4"
 
-ica_endpoint: ica-org2.my-hlf-domain.com:30448
-tlsca_endpoint: tls-ca.my-hlf-domain.com:30448
+ica_endpoint: ica-org2.falcon.white-label.npci.org.in:30448
+tlsca_endpoint: tls-ca.falcon.white-label.npci.org.in:30448
 
-hlf_domain: my-hlf-domain.com
+hlf_domain: falcon.white-label.npci.org.in
 hlf_channel: "mychannel"
 fabric_actions: 
  approve_chaincode: true 
@@ -26,8 +26,8 @@ csr_names_st: Maharashtra
 csr_names_l: Mumbai
 csr_names_o: Your Company Name
 
-orderer_endpoint: orderer0-orderer.my-hlf-domain.com:30448
-filestore_endpoint: http://filestore.my-hlf-domain.com:31862
+orderer_endpoint: orderer0-orderer.falcon.white-label.npci.org.in:30448
+filestore_endpoint: http://filestore.falcon.white-label.npci.org.in:31862
 filestore_ssl: false # Make it `true` if `filestore_endpoint` is over https.
 require_collection_config: "true"
 collection_config_file: "collection-config.json"

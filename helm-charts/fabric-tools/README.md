@@ -29,7 +29,7 @@ The following table lists the configurable parameters of the Fabric-tools chart 
 | `csr_names_st` | State | `"Maharashtra"` |
 | `csr_names_l` | Locality | `"Mumbai"` |
 | `csr_names_o` | Organization Name | `"Your Company Name"` |
-| `hlf_domain` | The FQDN suffix for the identities enrollment  | `"my-hlf-domain.com"` |
+| `hlf_domain` | The FQDN suffix for the identities enrollment  | `"falcon.white-label.npci.org.in"` |
 | `ca_endpoint` | The CA endpoint; Eg; `ica-org.com:30448` | `""` |
 | `tlsca_endpoint` | The TLSCA endpoint; Eg; `tlsca-org.com:30448` | `""` |
 | `identities` | The identities arrary | `[]` |

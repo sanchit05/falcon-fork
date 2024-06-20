@@ -21,9 +21,9 @@ retry_seconds: 60
 recreate_intermediate_cert: false
 
 ## tls_domain : This will be used to create an Ingress, and CSR for the CA server.
-## Eg: my-hlf-domain.com, then the Ingress object will be created as a combination of ".fabric-ca.fullname + .Values.tls_domain"
-## ie, root-ca.my-hlf-domain.com
-tls_domain: my-hlf-domain.com
+## Eg: falcon.white-label.npci.org.in, then the Ingress object will be created as a combination of ".fabric-ca.fullname + .Values.tls_domain"
+## ie, root-ca.falcon.white-label.npci.org.in
+tls_domain: falcon.white-label.npci.org.in
 ca_server:
   csr_names_c: IN
   csr_names_st: Maharashtra
@@ -42,8 +42,8 @@ ica:
   ## When true, this will be deployed as an ICA. 
   enabled: false
   ## Required when ica.enabled: true. 
-  ## Eg: root-ca.my-hlf-domain.com:30448. You must specify the port and without http or https. By default all CA servers will be deployed with TLS. This chart will suffix "https" to this given end point when performing any actions.
-  ## parent_ca_endpoint: root-ca.my-hlf-domain.com:30448
+  ## Eg: root-ca.falcon.white-label.npci.org.in:30448. You must specify the port and without http or https. By default all CA servers will be deployed with TLS. This chart will suffix "https" to this given end point when performing any actions.
+  ## parent_ca_endpoint: root-ca.falcon.white-label.npci.org.in:30448
   ## Required when ica.enabled: true. Uncomment, when you want to use it.
   # intermediate_tls_cert_dir: /tmp/hyperledger/fabric-ca/root-ca-cert
   # intermediate_tls_cert_file: cert.pem

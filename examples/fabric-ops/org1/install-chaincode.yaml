@@ -18,17 +18,17 @@ csr_names_st: Maharashtra
 csr_names_l: Mumbai
 csr_names_o: Your Company Name
 
-ica_endpoint: ica-org1.my-hlf-domain.com:30448
-tlsca_endpoint: tls-ca.my-hlf-domain.com:30448
+ica_endpoint: ica-org1.falcon.white-label.npci.org.in:30448
+tlsca_endpoint: tls-ca.falcon.white-label.npci.org.in:30448
 
-filestore_endpoint: http://filestore.my-hlf-domain.com:31862
+filestore_endpoint: http://filestore.falcon.white-label.npci.org.in:31862
 filestore_ssl: false # Make it `true` if `filestore_endpoint` is over https.
 channel_block_filename: mychannel.block
 retry_seconds: 10
 
 cc_tar_file: basic-chaincode_go_1.0.tar.gz
 
-hlf_domain: my-hlf-domain.com
+hlf_domain: falcon.white-label.npci.org.in
 hlf_channel: "mychannel"
 fabric_actions: 
  install_chaincode: true

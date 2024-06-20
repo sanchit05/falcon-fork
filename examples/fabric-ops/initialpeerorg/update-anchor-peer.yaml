@@ -13,12 +13,12 @@ image:
   ## Overrides the image tag whose default is the chart appVersion.
   tag: "2.4"
 
-ica_endpoint: ica-initialpeerorg.my-hlf-domain.com:30448
-tlsca_endpoint: tls-ca.my-hlf-domain.com:30448
+ica_endpoint: ica-initialpeerorg.falcon.white-label.npci.org.in:30448
+tlsca_endpoint: tls-ca.falcon.white-label.npci.org.in:30448
 
-orderer_endpoint: orderer0-orderer.my-hlf-domain.com:30448
+orderer_endpoint: orderer0-orderer.falcon.white-label.npci.org.in:30448
 
-hlf_domain: my-hlf-domain.com
+hlf_domain: falcon.white-label.npci.org.in
 hlf_channel: "mychannel"
 fabric_actions: 
  update_anchor_peer: true
@@ -37,11 +37,11 @@ admin_identity:
     require_tls_enrollment: false
 
 anchor_peers:
-   - host: peer0-initialpeerorg.my-hlf-domain.com
+   - host: peer0-initialpeerorg.falcon.white-label.npci.org.in
      port: "30448"
-   - host: peer1-initialpeerorg.my-hlf-domain.com
+   - host: peer1-initialpeerorg.falcon.white-label.npci.org.in
      port: "30448"
-   - host: peer2-initialpeerorg.my-hlf-domain.com
+   - host: peer2-initialpeerorg.falcon.white-label.npci.org.in
      port: "30448"
 
 serviceAccount:

@@ -57,8 +57,8 @@ The following table lists the configurable parameters of the Filestore chart and
 | `securityContext` | Simple securityContext | `{}` |
 | `service.type` | Kubernetes service type | `"ClusterIP"` |
 | `service.port` | Kubernetes service port | `80` |
-| `hostOverride` | Override the default `filestore.my-hlf-domain.com` end point at ingress resource | `""` |
-| `global.hlf_domain` | Eg; `domain.com`, then the ingress will be created `"filestore.domain.com"` | `"my-hlf-domain.com"` |
+| `hostOverride` | Override the default `filestore.falcon.white-label.npci.org.in` end point at ingress resource | `""` |
+| `global.hlf_domain` | Eg; `domain.com`, then the ingress will be created `"filestore.domain.com"` | `"falcon.white-label.npci.org.in"` |
 | `ingress.enabled` | `true` to enable ingress resource | `true` |
 | `ingress.className` | Ingress classname | `"nginx"` |
 | `ingress.annotations` | Ingress annotations | `{}` |

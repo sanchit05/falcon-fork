@@ -21,7 +21,7 @@ imagePullSecrets: []
 organizations:
   - org_type: orderer
     org_name: orderer
-    ica_endpoint: ica-orderer.my-hlf-domain.com:30448
+    ica_endpoint: ica-orderer.falcon.white-label.npci.org.in:30448
     cert_path: /root/orderer.pem
     admin_identity: admin
     admin_secret: ordererAdminpassword
@@ -37,25 +37,25 @@ organizations:
       port: "30448"
   - org_type: peerorg
     org_name: initialpeerorg
-    ica_endpoint: ica-initialpeerorg.my-hlf-domain.com:30448
+    ica_endpoint: ica-initialpeerorg.falcon.white-label.npci.org.in:30448
     cert_path: /root/peerorg.pem
     admin_identity: admin
     admin_secret: initialpeerorgAdminSamplePassword
     anchor_peers:
-    - host: peer0-initialpeerorg.my-hlf-domain.com
+    - host: peer0-initialpeerorg.falcon.white-label.npci.org.in
       port: "30448"
 
 channel_artifact_dir: /scripts/channel-artifacts
 base_dir: /scripts/crypto-config
-hlf_domain: my-hlf-domain.com
+hlf_domain: falcon.white-label.npci.org.in
 orderer_system_channel: "orderer-sys-channel"
 hlf_channel: "mychannel"
 block_file: genesis.block
 config_transaction_filename: channel.tx
 
-tlsca_endpoint: tls-ca.my-hlf-domain.com:30448
+tlsca_endpoint: tls-ca.falcon.white-label.npci.org.in:30448
 
-filestore_endpoint: http://filestore.my-hlf-domain.com:31862
+filestore_endpoint: http://filestore.falcon.white-label.npci.org.in:31862
 filestore_ssl: false # Make it `true` if `filestore_endpoint` is over https.
 
 csr_names_cn: IN

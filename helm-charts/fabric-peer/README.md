@@ -129,7 +129,7 @@ The following table lists the configurable parameters of the Fabric-peer chart a
 | `peers.[].peerCertDiskSize` | Peer cert DiskSize | default `.Values.global.peerCertDiskSize` |
 | `peers.[].peerPvcAccessMode` | Peer PVC accessmode | default `.Values.global.peerPvcAccessMode` |
 | `peers.[].peerUseExistingPvcPrefix` | If you want to use an existing pvc for Peer. A pvc must exists with this prefix and its fullname must match with the redered pod name under this statefulset | `"data-peer"` |
-| `global.hlf_domain` | The FQDN suffix for the peers. | `"my-hlf-domain.com"` |
+| `global.hlf_domain` | The FQDN suffix for the peers. | `"falcon.white-label.npci.org.in"` |
 | `global.ica_endpoint` | MSPCA Server endpoint with port (without http/s) | `""` |
 | `global.tlsca_endpoint` | TLSCA server endpoint with port (without http/s) | `""` |
 | `global.storageClass` | Default Storageclass name | `"standard"` |

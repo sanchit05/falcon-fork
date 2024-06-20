@@ -57,13 +57,13 @@ The following table lists the configurable parameters of the Fabric-orderer char
 | `csr_names_st` | State | `"Maharashtra"` |
 | `csr_names_l` | Locality | `"Mumbai"` |
 | `csr_names_o` | Organization Name | `"Your Company Name"` |
-| `filestore_endpoint` | Filestore endpoint with `http/s://fqdn:port ` format. | `"http://filestore.my-hlf-domain.com:31862"` |
+| `filestore_endpoint` | Filestore endpoint with `http/s://fqdn:port ` format. | `"http://filestore.falcon.white-label.npci.org.in:31862"` |
 | `filestore_ssl` | `true` if `filestore_endpoint` is over https. | `false` |
 | `ica_tls_cert_file` | Path for the init container to store the public key cert of `global.ica_endpoint` | `"/root/ica-cert.pem"` |
 | `orderer_cert_base_dir` | Path to store the orderer enrollment certs (msp/tls) | `"/var/hyperledger/orderer"` |
 | `orderer_data_dir` | Path to store the orderer data | `"/var/hyperledger/production"` |
 | `retry_seconds` | Retry period in seconds for any script activities. Eg; enrollment | `60` |
-| `hlf_domain` | The FQDN suffix for the orderers.  | `"my-hlf-domain.com"` |
+| `hlf_domain` | The FQDN suffix for the orderers.  | `"falcon.white-label.npci.org.in"` |
 | `init.image.repository` | The init container image repository | `"npcioss/hlf-builder"` |
 | `init.image.tag` | The init container image tag | `2.4` |
 | `MspIdOverride` | To override Org name different than `nameOverride` | `""` |
@@ -116,8 +116,8 @@ The following table lists the configurable parameters of the Fabric-orderer char
 | `global.servicePort` | Default Orderer k8s service port | `7050` |
 | `global.serviceType` | Default Orderer k8s service type | `ClusterIP` |
 | `global.replicaCount` | Orderer replica count. Only 1 per orderer is supported as of now | `1` |
-| `global.ica_endpoint` | MSPCA Server endpoint with port (without http/s) | `"ica-orderer.my-hlf-domain.com:30448"` |
-| `global.tlsca_endpoint` | TLSCA server endpoint with port (without http/s) | `"tls-ca.my-hlf-domain.com:30448"` |
+| `global.ica_endpoint` | MSPCA Server endpoint with port (without http/s) | `"ica-orderer.falcon.white-label.npci.org.in:30448"` |
+| `global.tlsca_endpoint` | TLSCA server endpoint with port (without http/s) | `"tls-ca.falcon.white-label.npci.org.in:30448"` |
 | `global.image.repository` | The Orderer container image repository | `"hyperledger/fabric-orderer"` |
 | `global.image.pullPolicy` | The Orderer container image pullpolicy | `"IfNotPresent"` |
 | `global.image.imagePullSecrets` | The Orderer container registry imagePullSecrets | `[]` |

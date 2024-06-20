@@ -16,12 +16,12 @@ image:
   ## Overrides the image tag whose default is the chart appVersion.
   tag: "2.4"
 
-ica_endpoint: ica-initialpeerorg.my-hlf-domain.com:30448
-tlsca_endpoint: tls-ca.my-hlf-domain.com:30448
+ica_endpoint: ica-initialpeerorg.falcon.white-label.npci.org.in:30448
+tlsca_endpoint: tls-ca.falcon.white-label.npci.org.in:30448
 
-orderer_endpoint: orderer0-orderer.my-hlf-domain.com:30448
+orderer_endpoint: orderer0-orderer.falcon.white-label.npci.org.in:30448
 
-hlf_domain: my-hlf-domain.com
+hlf_domain: falcon.white-label.npci.org.in
 hlf_channel: "mychannel"
 
 admin_identity:
@@ -38,16 +38,16 @@ admin_identity:
 # Organizations to be added
 organizatons:
  - name: org1
-   ica_endpoint: ica-org1.my-hlf-domain.com:30448
+   ica_endpoint: ica-org1.falcon.white-label.npci.org.in:30448
    identity_name: admin
    identity_secret: org1AdminSamplePassword
-   anchor_peer: peer0-org1.my-hlf-domain.com
+   anchor_peer: peer0-org1.falcon.white-label.npci.org.in
    anchor_peer_port: 30448
  - name: org2
-   ica_endpoint: ica-org2.my-hlf-domain.com:30448
+   ica_endpoint: ica-org2.falcon.white-label.npci.org.in:30448
    identity_name: admin
    identity_secret: org2AdminSamplePassword
-   anchor_peer: peer0-org2.my-hlf-domain.com
+   anchor_peer: peer0-org2.falcon.white-label.npci.org.in
    anchor_peer_port: 30448
 
 csr_names_cn: IN
