@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-nameOverride: "initialpeerorg"
+nameOverride: "org1"
 fullnameOverride: ""
 project: yourproject
 
@@ -25,18 +25,18 @@ retry_seconds: 60
 
 peers:
   - name: peer0
-    identity_name: peer0-initialpeerorg
-    identity_secret: peer0initialpeerorgSamplePassword
+    identity_name: peer0-org1
+    identity_secret: peer0org1SamplePassword
   - name: peer1
-    identity_name: peer1-initialpeerorg
-    identity_secret: peer1initialpeerorgSamplePassword
+    identity_name: peer1-org1
+    identity_secret: peer1org1SamplePassword
   - name: peer2
-    identity_name: peer2-initialpeerorg
-    identity_secret: peer2initialpeerorgSamplePassword
+    identity_name: peer2-org1
+    identity_secret: peer2org1SamplePassword
 
 global:
   hlf_domain: falcon.white-label.npci.org.in
-  ica_endpoint: ica-initialpeerorg.falcon.white-label.npci.org.in:30448
+  ica_endpoint: ica-org1.falcon.white-label.npci.org.in:30448
   tlsca_endpoint: tls-ca.falcon.white-label.npci.org.in:30448
   #require_certs_dir_persistence: true
   storageClass: standard
@@ -116,7 +116,7 @@ global:
   peerCertDiskSize: 50M
   peerPvcAccessMode: ReadWriteOnce
 
-  core_peer_gossip_bootstrap: peer0-initialpeerorg.falcon.white-label.npci.org.in:30448
+  core_peer_gossip_bootstrap: peer0-org1.falcon.white-label.npci.org.in:30448
   core_ledger_state_couchdbconfig_requesttimeout: "180s"
   core_ledger_state_couchdbconfig_maxretries: "5"
   core_ledger_state_couchdbconfig_maxupdatebatchsize: "5000"

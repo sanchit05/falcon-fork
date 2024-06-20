@@ -8,7 +8,7 @@ A Helm chart for deploying Fabric cli tools in Kubernetes.
 No additional values file required for the fabric-tool. You can simply re-use any of the identity values file with its content.
 
 ```bash
-$ helm install cli-tools -n initialpeerorg helm-charts/fabric-tools/ -f examples/fabric-ops/initialpeerorg/identities.yaml
+$ helm install cli-tools -n org1 helm-charts/fabric-tools/ -f examples/fabric-ops/org1/identities.yaml
 ```
 Once deployed, exec into the pod and run `bash /scripts/enroll.sh` and watch the output. All identities will be enrolled and new certs will be available in the respective directory.
 
@@ -18,7 +18,7 @@ The following table lists the configurable parameters of the Fabric-tools chart 
 
 | Parameter                | Description             | Default        |
 | ------------------------ | ----------------------- | -------------- |
-| `nameOverride` | Helm default | `"initialpeerorg"` |
+| `nameOverride` | Helm default | `"org1"` |
 | `fullnameOverride` | Helm default | `""` |
 | `project` | Project name string. This will be added to every resource label as `project=yourproject` | `"yourproject"` |
 | `imagePullSecrets` | Image pull secret name | `[]` |

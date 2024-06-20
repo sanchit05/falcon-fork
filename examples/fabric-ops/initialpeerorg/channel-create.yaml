@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-nameOverride: "initialpeerorg"
+nameOverride: "org1"
 fullnameOverride: ""
 project: yourproject
 
@@ -13,7 +13,7 @@ image:
   ### Overrides the image tag whose default is the chart appVersion.
   tag: "2.4"
 
-ica_endpoint: ica-initialpeerorg.falcon.white-label.npci.org.in:30448
+ica_endpoint: ica-org1.falcon.white-label.npci.org.in:30448
 tlsca_endpoint: tls-ca.falcon.white-label.npci.org.in:30448
 
 orderer_endpoint: orderer0-orderer.falcon.white-label.npci.org.in:30448
@@ -35,7 +35,7 @@ csr_names_o: Your Company Name
 
 admin_identity:
   - identity_name: admin
-    identity_secret: initialpeerorgAdminSamplePassword
+    identity_secret: org1AdminSamplePassword
     require_msp_enrollment: true
     require_tls_enrollment: false
 

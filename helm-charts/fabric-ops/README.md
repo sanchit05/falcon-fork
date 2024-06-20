@@ -139,13 +139,13 @@ organizations:
       identity_secret: orderer2ordererSamplePassword
       port: "30448"
   - org_type: peerorg
-    org_name: initialpeerorg
-    ica_endpoint: ica-initialpeerorg.falcon.white-label.npci.org.in:30448
+    org_name: org1
+    ica_endpoint: ica-org1.falcon.white-label.npci.org.in:30448
     cert_path: /root/peerorg.pem
     admin_identity: admin
-    admin_secret: initialpeerorgAdminSamplePassword
+    admin_secret: org1AdminSamplePassword
     anchor_peers:
-    - host: peer0-initialpeerorg.falcon.white-label.npci.org.in
+    - host: peer0-org1.falcon.white-label.npci.org.in
       port: "30448"
 ```
 
@@ -169,7 +169,7 @@ organizations:
 ```bash
 admin_identity:
   - identity_name: admin
-    identity_secret: initialpeerorgAdminSamplePassword
+    identity_secret: org1AdminSamplePassword
     require_msp_enrollment: true
     require_tls_enrollment: false
 ```
@@ -190,11 +190,11 @@ admin_identity:
 
 ```bash
 anchor_peers:
-   - host: peer0-initialpeerorg.falcon.white-label.npci.org.in
+   - host: peer0-org1.falcon.white-label.npci.org.in
      port: "30448"
-   - host: peer1-initialpeerorg.falcon.white-label.npci.org.in
+   - host: peer1-org1.falcon.white-label.npci.org.in
      port: "30448"
-   - host: peer2-initialpeerorg.falcon.white-label.npci.org.in
+   - host: peer2-org1.falcon.white-label.npci.org.in
      port: "30448"
 ```
 
@@ -203,7 +203,7 @@ anchor_peers:
 | Parameter                | Description             | Default        |
 | ------------------------ | ----------------------- | -------------- |
 | `fabric_actions.configure_org_channel` | `true` to specify the job is to add new org | `true` |
-| `ica_endpoint` | FQDN of the MSPCA server endpoint with port | `"ica-initialpeerorg.falcon.white-label.npci.org.in:30448"` |
+| `ica_endpoint` | FQDN of the MSPCA server endpoint with port | `"ica-org1.falcon.white-label.npci.org.in:30448"` |
 | `tlsca_endpoint` | FQDN of the TLSCA server endpoint with port | `"tls-ca.falcon.white-label.npci.org.in:30448"` |
 | `orderer_endpoint` | FQDN of the Orderer node endpoint with port | `"orderer0-orderer.falcon.white-label.npci.org.in:30448"` |
 | `hlf_channel` | The channel to update | `""` |
@@ -248,10 +248,10 @@ organizatons:
 
 ```bash
 peer_identities:
- - identity_name: peer0-initialpeerorg
-   # peer_endpoint: peer0-initialpeerorg.falcon.white-label.npci.org.in:30448 # By default it will use identity_name:peer_internal_service_port
- - identity_name: peer1-initialpeerorg
- - identity_name: peer2-initialpeerorg
+ - identity_name: peer0-org1
+   # peer_endpoint: peer0-org1.falcon.white-label.npci.org.in:30448 # By default it will use identity_name:peer_internal_service_port
+ - identity_name: peer1-org1
+ - identity_name: peer2-org1
  ```
 
  ## How to approve Chaincode for an Org ?
@@ -268,7 +268,7 @@ peer_identities:
 | `require_collection_config` | `true` if collection config is required | `"true"` |
 | `collection_config_file` | Collection config filename in the filestore under the project directory  | `"collection-config.json"` |
 | `collection_config_file_hash` | File hash of the above collection config | `""` |
-| `core_peer_address` | Core peer address | `"peer0-initialpeerorg:30002"` |
+| `core_peer_address` | Core peer address | `"peer0-org1:30002"` |
 | `cc_name` | Chaincode name  | `"basic-chaincode"` |
 | `cc_version` | Chaincode version | `"1.0"` |
 | `cc_package_id` | Chaincode package ID | `""` |
@@ -290,7 +290,7 @@ peer_identities:
 | `filestore_ssl` | `true` if `filestore_endpoint` is over https | `false` |
 | `collection_config_file` | Collection config filename in the filestore under the project directory | `"collection-config.json"` |
 | `collection_config_file_hash` | File hash of the above collection config | `""` |
-| `core_peer_address` | Core peer address | `"peer0-initialpeerorg:30002"` |
+| `core_peer_address` | Core peer address | `"peer0-org1:30002"` |
 | `cc_name` | Chaincode name | `"basic-chaincode"` |
 | `cc_version` | Chaincode version | `"1.0"` |
 | `seq` | Seq number | `"1"` |

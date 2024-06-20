@@ -24,7 +24,7 @@ Download the `falcon fabric-peer` charts repo locally:
 To install the chart with the release name `peer`:
 
 ```bash
-$ helm install peer -n initialpeerorg helm-charts/fabric-peer/ -f examples/fabric-peer/initialpeerorg/values.yaml
+$ helm install peer -n org1 helm-charts/fabric-peer/ -f examples/fabric-peer/org1/values.yaml
 ```
 
 This above command deploys the peer nodes based on your peer count at peer array. 
@@ -36,7 +36,7 @@ This above command deploys the peer nodes based on your peer count at peer array
 To uninstall/delete the release:
 
 ```bash
-$ helm delete peer -n initialpeerorg
+$ helm delete peer -n org1
 ```
 
 ## Configuration
@@ -45,7 +45,7 @@ The following table lists the configurable parameters of the Fabric-peer chart a
 
 | Parameter                | Description             | Default                        |
 | ------------------------ | ----------------------- | ------------------------------ |
-| `nameOverride` | This has to match with Peer Org name | `"initialpeerorg"` |
+| `nameOverride` | This has to match with Peer Org name | `"org1"` |
 | `fullnameOverride` | Helm default | `""` |
 | `project` | Project name string. This will be added to every resource label as `project=yourproject` | `"yourproject"` |
 | `imagePullSecrets` | The container registry imagePullSecrets | `[]` |

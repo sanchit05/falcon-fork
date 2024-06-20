@@ -54,7 +54,7 @@ Clone this repository and change your directory to the root directory. First you
 [![FILESTORE RESPONSE](../images/filestore-response.png)]()
 
 
-#### Deploy ROOTCA,TLSCA & InitialpeerOrg environments
+#### Deploy ROOTCA,TLSCA & org1 environments
 
 2. **Deploy ROOT CA**
 
@@ -106,17 +106,17 @@ helm install ica-orderer -n orderer helm-charts/fabric-ca -f examples/fabric-ca/
 ```
 7. **Deploy Initial peer org ICA**
 
-Follow the same ICA Orderer deployment steps here and update [examples/fabric-ca/ica-initialpeerorg.yaml](./fabric-ca/ica-initialpeerorg.yaml) with your secret if you have created the secret with a different name. If you have not touched anything, then simply apply the following.
+Follow the same ICA Orderer deployment steps here and update [examples/fabric-ca/ica-org1.yaml](./fabric-ca/ica-org1.yaml) with your secret if you have created the secret with a different name. If you have not touched anything, then simply apply the following.
 ```
-helm install ica-initialpeerorg -n initialpeerorg helm-charts/fabric-ca -f examples/fabric-ca/ica-initialpeerorg.yaml 
+helm install ica-org1 -n org1 helm-charts/fabric-ca -f examples/fabric-ca/ica-org1.yaml 
 ```
 8. **Create Orderer identities with ica-orderer**
 ```
 helm install orderer-ops -n orderer helm-charts/fabric-ops/ -f examples/fabric-ops/orderer/orderer-identities.yaml
 ```
-9. **Create Initialpeerorg identities with ica-initialpeerorg**
+9. **Create org1 identities with ica-org1**
 ```
-helm install initialpeerorg-ops -n initialpeerorg helm-charts/fabric-ops/ -f examples/fabric-ops/initialpeerorg/identities.yaml
+helm install org1-ops -n org1 helm-charts/fabric-ops/ -f examples/fabric-ops/org1/identities.yaml
 ```
 10. **Generate Genesisblock & Channel transaction file**
 ```
@@ -130,27 +130,27 @@ helm install orderer -n orderer helm-charts/fabric-orderer/ -f examples/fabric-o
 ```
 12. **Deploy Peers on Initial peer org**
 ```
-helm install peer -n initialpeerorg helm-charts/fabric-peer/ -f examples/fabric-peer/initialpeerorg/values.yaml
+helm install peer -n org1 helm-charts/fabric-peer/ -f examples/fabric-peer/org1/values.yaml
 ```
-After successful deployment of the Peers, you will get 3 peers in initialpeerorg namespace. Each of these peers will have 1 Init container and 3 app containers `(Fabric Peer, Dind & CouchDB)`. If everything went fine, then you'll see some successful connectivity logs in the `peer0-initialpeerorg-0`.   
+After successful deployment of the Peers, you will get 3 peers in org1 namespace. Each of these peers will have 1 Init container and 3 app containers `(Fabric Peer, Dind & CouchDB)`. If everything went fine, then you'll see some successful connectivity logs in the `peer0-org1-0`.   
 
 13. **Create channel**
 ```
-helm install channelcreate -n initialpeerorg helm-charts/fabric-ops/ -f examples/fabric-ops/initialpeerorg/channel-create.yaml
+helm install channelcreate -n org1 helm-charts/fabric-ops/ -f examples/fabric-ops/org1/channel-create.yaml
 ```
 
 14. **Update Anchor peers of Initial peer org** 
 ```
-helm install updateanchorpeer -n initialpeerorg helm-charts/fabric-ops/ -f examples/fabric-ops/initialpeerorg/update-anchor-peer.yaml
+helm install updateanchorpeer -n org1 helm-charts/fabric-ops/ -f examples/fabric-ops/org1/update-anchor-peer.yaml
 ```
 
 **Important** :- Before you install chaincode , you need to upload the packaged chaincode  file to the filestore under your project directory. If you don't have any chaincode, you can upload the sample chaincode from our repository `examples/files/basic-chaincode_go_1.0.tar.gz` to `/usr/share/nginx/html/yourproject` path in the filestore server.
 
-If you have your own chaincode, then package it and upload the same to filestore and change the chaincode filename in the [examples/fabric-ops/initialpeerorg/install-chaincode.yaml](./fabric-ops/initialpeerorg/install-chaincode.yaml) values file. This must be changed in all Org's `install-chaincode.yaml` values as well `Values.cc_tar_file`.
+If you have your own chaincode, then package it and upload the same to filestore and change the chaincode filename in the [examples/fabric-ops/org1/install-chaincode.yaml](./fabric-ops/org1/install-chaincode.yaml) values file. This must be changed in all Org's `install-chaincode.yaml` values as well `Values.cc_tar_file`.
 
-15. **Install chaincode on Initialpeerorg Peers**
+15. **Install chaincode on org1 Peers**
 ```
-helm install installchaincode -n initialpeerorg helm-charts/fabric-ops/ -f examples/fabric-ops/initialpeerorg/install-chaincode.yaml
+helm install installchaincode -n org1 helm-charts/fabric-ops/ -f examples/fabric-ops/org1/install-chaincode.yaml
 ```
 
 
@@ -168,9 +168,9 @@ helm install org1-ca-ops -n org1 helm-charts/fabric-ops/ -f examples/fabric-ops/
 ```
 3. **Add Org1 to the network**
 
-Once the `Org1` ICA started successfully, you would need to add this `Org1` to the network. For that, you need to run the following Job in `initialpeerorg`. Comment out the `org2` section from the `Values.organizatons` array in the values file [examples/fabric-ops/initialpeerorg/configure-org-channel.yaml](./fabric-ops/initialpeerorg/configure-org-channel.yaml) for now since we have not deployed the `Org2` yet.
+Once the `Org1` ICA started successfully, you would need to add this `Org1` to the network. For that, you need to run the following Job in `org1`. Comment out the `org2` section from the `Values.organizatons` array in the values file [examples/fabric-ops/org1/configure-org-channel.yaml](./fabric-ops/org1/configure-org-channel.yaml) for now since we have not deployed the `Org2` yet.
 ```
-helm install configorgchannel -n initialpeerorg helm-charts/fabric-ops/ -f examples/fabric-ops/initialpeerorg/configure-org-channel.yaml
+helm install configorgchannel -n org1 helm-charts/fabric-ops/ -f examples/fabric-ops/org1/configure-org-channel.yaml
 ```
 4. **Deploy Peers on Org1**
 ```
@@ -199,9 +199,9 @@ helm install org2-ca-ops -n org2 helm-charts/fabric-ops/ -f examples/fabric-ops/
 ```
 3. **Add Org2 to network**
 
-Once the `Org2` ICA started successfully, you would need to add this `Org2` to the network. For that, you need to upgrade the following `configorgchannel` Job in `initialpeerorg`. This time, uncomment the `org2` section in the `Values.organizatons` array in the values file [examples/fabric-ops/initialpeerorg/configure-org-channel.yaml](./fabric-ops/initialpeerorg/configure-org-channel.yaml).
+Once the `Org2` ICA started successfully, you would need to add this `Org2` to the network. For that, you need to upgrade the following `configorgchannel` Job in `org1`. This time, uncomment the `org2` section in the `Values.organizatons` array in the values file [examples/fabric-ops/org1/configure-org-channel.yaml](./fabric-ops/org1/configure-org-channel.yaml).
 ```
-helm upgrade configorgchannel -n initialpeerorg helm-charts/fabric-ops/ -f examples/fabric-ops/initialpeerorg/configure-org-channel.yaml
+helm upgrade configorgchannel -n org1 helm-charts/fabric-ops/ -f examples/fabric-ops/org1/configure-org-channel.yaml
 ```
 4. **Deploy Peers on Org2**
 ```
@@ -222,15 +222,15 @@ helm install updateanchorpeer -n org2 helm-charts/fabric-ops/ -f examples/fabric
 
  **Important** :- For additional validation, we have added the uploaded collection config `sha256sum` value in the values files of the approval & commit job. These jobs will fail if the `sha256sum` value of the downloaded `collection-config` and the one provided in the values files are different. So if you're changing the `collection-config`, then kindly update the `sha256sum` value under `Values.collection_config_file_hash`.
 
-1. **Approve ChainCode on Initialpeerorg**
+1. **Approve ChainCode on org1**
 
- Ensure that you have updated the Chaincode package ID in [examples/fabric-ops/initialpeerorg/approve-chaincode.yaml](./fabric-ops/initialpeerorg/approve-chaincode.yaml), below are the required fields for updating with your own chaincode details. (This Chaincode package ID update is only required if you use your own chaincode package. If not, simply apply the following helm approval jobs)
+ Ensure that you have updated the Chaincode package ID in [examples/fabric-ops/org1/approve-chaincode.yaml](./fabric-ops/org1/approve-chaincode.yaml), below are the required fields for updating with your own chaincode details. (This Chaincode package ID update is only required if you use your own chaincode package. If not, simply apply the following helm approval jobs)
 - cc_name
 - cc_version
 - cc_package_id
 
 ```
-helm install approvechaincode -n initialpeerorg helm-charts/fabric-ops/ -f examples/fabric-ops/initialpeerorg/approve-chaincode.yaml
+helm install approvechaincode -n org1 helm-charts/fabric-ops/ -f examples/fabric-ops/org1/approve-chaincode.yaml
 ```
 2. **Approve ChainCode on Org1**
 
@@ -252,15 +252,15 @@ helm install approvechaincode -n org1 helm-charts/fabric-ops/ -f examples/fabric
 ```
 helm install approvechaincode -n org2 helm-charts/fabric-ops/ -f examples/fabric-ops/org2/approve-chaincode.yaml
 ```
-4. **Commit ChainCode on Initialpeerorg**
+4. **Commit ChainCode on org1**
 
- Ensure that you have updated the Chaincode package ID in [examples/fabric-ops/initialpeerorg/approve-chaincode.yaml](./fabric-ops/initialpeerorg/approve-chaincode.yaml), below are the required fields for updating with your own chaincode details. (This Chaincode package ID update is only required if you use your own chaincode package. If not, simply apply the following helm commit job)
+ Ensure that you have updated the Chaincode package ID in [examples/fabric-ops/org1/approve-chaincode.yaml](./fabric-ops/org1/approve-chaincode.yaml), below are the required fields for updating with your own chaincode details. (This Chaincode package ID update is only required if you use your own chaincode package. If not, simply apply the following helm commit job)
 - cc_name
 - cc_version
 - cc_package_id
 
 ```
-helm install commitchaincode -n initialpeerorg helm-charts/fabric-ops/ -f examples/fabric-ops/initialpeerorg/commit-chaincode.yaml
+helm install commitchaincode -n org1 helm-charts/fabric-ops/ -f examples/fabric-ops/org1/commit-chaincode.yaml
 ```
  You can verify the commit job log. If everything is success, you will see similar logs at the end of the job.
 [![CC commit log](../images/cc-commit-success-log.png)]()
@@ -270,7 +270,7 @@ helm install commitchaincode -n initialpeerorg helm-charts/fabric-ops/ -f exampl
 Optionally you can deploy a `fabric-cli tool` which has the essential fabric tools for advanced troubleshooting. We have packed it as a helm chart which will do dynamic enrollment for your identities. You don't need seperate values file for this, simply use the existing identity registration value file. You must deploy it per org.
 
 ```
-helm install cli-tools -n initialpeerorg helm-charts/fabric-tools/ -f examples/fabric-ops/initialpeerorg/identities.yaml
+helm install cli-tools -n org1 helm-charts/fabric-tools/ -f examples/fabric-ops/org1/identities.yaml
 ```
  Once deployed, exec into the pod and run `bash /scripts/enroll.sh` and watch the output. All identities will be enrolled and new certs will be available in the respective directory. 
  
