@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo -e "\nstart time: $(date '+%F %T')\n"
+starttime=$(date +%s%N)
 
 # install filestore.
 helm upgrade --install --atomic --timeout 300s --wait-for-jobs filestore -n filestore helm-charts/filestore/ -f examples/filestore/values.yaml --create-namespace
@@ -59,4 +60,15 @@ helm upgrade --install --atomic --timeout 300s --wait-for-jobs peer -n org1 helm
 # create channel
 helm upgrade --install --atomic --timeout 300s --wait-for-jobs channelcreate -n org1 helm-charts/fabric-ops/ -f examples/fabric-ops/org1/channel-create.yaml
 
+# update anchor peer
+helm --install --atomic --timeout 300s --wait-for-jobs updateanchorpeer -n org1 helm-charts/fabric-ops/ -f examples/fabric-ops/org1/update-anchor-peer.yaml
+
+# install chaincode
+helm --install --atomic --timeout 300s --wait-for-jobs installchaincode -n org1 helm-charts/fabric-ops/ -f examples/fabric-ops/org1/install-chaincode.yaml
+
 echo -e "\nend time: $(date '+%F %T')\n"
+endtime=$(date +%s%N)
+
+diff=$((endtime-starttime))
+
+printf "\nTime elapsed: %s.%s seconds\n" "${diff:0: -9}" "${diff: -9:3}"
