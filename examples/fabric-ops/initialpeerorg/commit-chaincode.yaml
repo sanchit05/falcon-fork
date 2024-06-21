@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-nameOverride: "initialpeerorg"
+nameOverride: "org1"
 fullnameOverride: ""
 project: yourproject
 
@@ -13,7 +13,7 @@ image:
   ### Overrides the image tag whose default is the chart appVersion.
   tag: "2.4"
 
-ica_endpoint: ica-initialpeerorg.my-hlf-domain.com:30448
+ica_endpoint: ica-org1.my-hlf-domain.com:30448
 tlsca_endpoint: tls-ca.my-hlf-domain.com:30448
 
 hlf_domain: my-hlf-domain.com
@@ -32,7 +32,7 @@ filestore_endpoint: http://filestore.my-hlf-domain.com:31862
 filestore_ssl: false # Make it `true` if `filestore_endpoint` is over https.
 collection_config_file: collection-config.json
 collection_config_file_hash: "627dd1b8d679dc52475c148e502c576b109796df8495282ba602cc51ec173286"
-core_peer_address: peer0-initialpeerorg:30002
+core_peer_address: peer0-org1:30002
 
 cc_name: basic-chaincode
 cc_version: "1.0"
@@ -40,7 +40,7 @@ seq: "1"
 
 admin_identity:
   - identity_name: admin
-    identity_secret: initialpeerorgAdminSamplePassword
+    identity_secret: org1AdminSamplePassword
     require_msp_enrollment: true
     require_tls_enrollment: false
 

@@ -36,13 +36,13 @@ organizations:
       identity_secret: orderer2ordererSamplePassword
       port: "30448"
   - org_type: peerorg
-    org_name: initialpeerorg
-    ica_endpoint: ica-initialpeerorg.my-hlf-domain.com:30448
+    org_name: org1
+    ica_endpoint: ica-org1.my-hlf-domain.com:30448
     cert_path: /root/peerorg.pem
     admin_identity: admin
-    admin_secret: initialpeerorgAdminSamplePassword
+    admin_secret: org1AdminSamplePassword
     anchor_peers:
-    - host: peer0-initialpeerorg.my-hlf-domain.com
+    - host: peer0-org1.my-hlf-domain.com
       port: "30448"
 
 channel_artifact_dir: /scripts/channel-artifacts

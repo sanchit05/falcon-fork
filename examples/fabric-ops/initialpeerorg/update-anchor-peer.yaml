@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-nameOverride: "initialpeerorg"
+nameOverride: "org1"
 fullnameOverride: ""
 project: yourproject
 
@@ -13,7 +13,7 @@ image:
   ## Overrides the image tag whose default is the chart appVersion.
   tag: "2.4"
 
-ica_endpoint: ica-initialpeerorg.my-hlf-domain.com:30448
+ica_endpoint: ica-org1.my-hlf-domain.com:30448
 tlsca_endpoint: tls-ca.my-hlf-domain.com:30448
 
 orderer_endpoint: orderer0-orderer.my-hlf-domain.com:30448
@@ -32,16 +32,16 @@ csr_names_o: Your Company Name
 ## You don't need to pass all the existing peer identities here.
 admin_identity:
   - identity_name: admin
-    identity_secret: initialpeerorgAdminSamplePassword
+    identity_secret: org1AdminSamplePassword
     require_msp_enrollment: true
     require_tls_enrollment: false
 
 anchor_peers:
-   - host: peer0-initialpeerorg.my-hlf-domain.com
+   - host: peer0-org1.my-hlf-domain.com
      port: "30448"
-   - host: peer1-initialpeerorg.my-hlf-domain.com
+   - host: peer1-org1.my-hlf-domain.com
      port: "30448"
-   - host: peer2-initialpeerorg.my-hlf-domain.com
+   - host: peer2-org1.my-hlf-domain.com
      port: "30448"
 
 serviceAccount:

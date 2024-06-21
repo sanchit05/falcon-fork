@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-nameOverride: "initialpeerorg"
+nameOverride: "org1"
 fullnameOverride: ""
 project: yourproject
 
@@ -16,7 +16,7 @@ image:
   ## Overrides the image tag whose default is the chart appVersion.
   tag: "2.4"
 
-ica_endpoint: ica-initialpeerorg.my-hlf-domain.com:30448
+ica_endpoint: ica-org1.my-hlf-domain.com:30448
 tlsca_endpoint: tls-ca.my-hlf-domain.com:30448
 
 orderer_endpoint: orderer0-orderer.my-hlf-domain.com:30448
@@ -26,14 +26,14 @@ hlf_channel: "mychannel"
 
 admin_identity:
   - identity_name: admin
-    identity_secret: initialpeerorgAdminSamplePassword
+    identity_secret: org1AdminSamplePassword
     require_msp_enrollment: true
     require_tls_enrollment: false
 
 # .Values.core_peer_mspconfigpath_override - Use only if your admin username is not "admin". 
 # This must be under /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/users/
 # Eg; /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/users/<admin-user>/msp
-# core_peer_mspconfigpath_override: /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/users/admin-initialpeerorg/msp
+# core_peer_mspconfigpath_override: /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/users/admin-org1/msp
 
 # Organizations to be added
 organizatons:
